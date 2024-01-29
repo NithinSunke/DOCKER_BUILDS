@@ -1,0 +1,22 @@
+version: '3'
+
+volumes:
+  gitlab_config:
+  gitlab_data:
+networks:
+  mylab:
+    name: mylab
+    external: true 
+services:
+  gitlab:
+    container_name: gitlab
+    image: gitlab/gitlab-ce
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # Optional, only if you want docker integration
+      - gitlab_config:/etc/gitlab
+      - gitlab_data:/var/opt/gitlab
+    ports:
+      - '8088:80'
+    networks:
+      - mylab

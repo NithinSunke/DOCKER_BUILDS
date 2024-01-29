@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  cloudbeaver:
+      image: dbeaver/cloudbeaver
+      container_name: "cloudbeaver"
+      restart: always
+      ports:
+       - '8978:8978'
+      volumes: 
+       - cloudbeaver:/opt/cloudbeaver/workspace            
+
+networks:
+  default:
+    name: mylab
+    external: true
+
+volumes:
+  cloudbeaver:
